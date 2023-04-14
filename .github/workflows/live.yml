@@ -5,17 +5,13 @@ on:
     branches: [ main ]
 
 jobs:
-  deployment:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+  update_release_draft:
     environment: live
-
-    update_release_draft:
-      permissions:
-        contents: write
-        pull-requests: write
-        runs-on: ubuntu-latest
-        steps:
-          - uses: release-drafter/release-drafter@v5
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
+      runs-on: ubuntu-latest
+      steps:
+        - uses: release-drafter/release-drafter@v5
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
