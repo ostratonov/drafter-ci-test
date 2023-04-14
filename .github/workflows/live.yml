@@ -1,0 +1,14 @@
+name: Deploy to Live
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    environment: live
+
+    steps:
+      - uses: release-drafter/release-drafter@v5.21.1
