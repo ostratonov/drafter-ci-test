@@ -3,7 +3,7 @@ tag-template: 'v$RESOLVED_VERSION'
 categories:
   - title: 'Tickets'
     labels:
-      - 'feature'
+      - 'BLS'
       - 'enhancement'
   - title: 'Bug Fixes'
     labels:
