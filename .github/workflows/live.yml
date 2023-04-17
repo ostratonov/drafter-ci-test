@@ -13,9 +13,6 @@ jobs:
       contents: write
       pull-requests: write
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
     steps:
       - name: Use Node.js
         uses: actions/setup-node@v1
@@ -28,6 +25,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deployy
-        run: yarn deployy
+        run: |
+          cd ../
+          yarn deployy
 
 
