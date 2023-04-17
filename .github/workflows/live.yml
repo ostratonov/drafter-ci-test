@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deployy
         run: |
-          cd ../../
+          ls -la
           yarn deployy
 
 
