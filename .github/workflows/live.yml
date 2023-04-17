@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: |
+         yarn install
+         yarn --frozen-lockfile
       - name: Changelog
         uses: release-drafter/release-drafter@v5
         env:
@@ -27,7 +29,6 @@ jobs:
           publish: true
       - name: Deployy
         run: |
-          ls -la
           yarn deployy
 
 
