@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index.js",
-    "deployy": "git push --tags"
+    "deployy": "git push --tags && yarn publish . --tag $npm_package_version"
   },
   "repository": {
     "type": "git",

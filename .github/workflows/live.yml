@@ -25,6 +25,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deployy
-        run: npm version [major | minor | patch]
+        run: yarn deployy
 
 
