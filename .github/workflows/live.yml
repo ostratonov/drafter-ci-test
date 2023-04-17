@@ -30,6 +30,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy version
         run: |
-          yarn deployy
+          yarn deploy:version
 
 
