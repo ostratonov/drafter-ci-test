@@ -22,6 +22,6 @@
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "semantic-release": "^21.0.1"
+    "semantic-release": "^19.0.2"
   }
 }
