@@ -7,15 +7,17 @@ categories:
   - title: 'Bug Fixes'
     labels:
       - 'bug'
-exclude-labels:
-  - 'skip-changelog'
 autolabeler:
   - label: 'bug'
     body:
       - '/fix/'
   - label: 'feature'
     body:
-      - '/BLS|STS-[0-9]{1,4}/'
+      - '/BLS-[0-9]{1,4}/'
+  - label: 'skip-changelog'
+    title: '/skip-changelog/'
+exclude-labels:
+  - 'skip-changelog'
 change-template: '- $TITLE (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
