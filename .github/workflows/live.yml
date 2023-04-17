@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install dependencies
-        working-directory: app
+        working-directory: ../../app
         run: npm install
       - name: Changelog
         uses: release-drafter/release-drafter@v5
