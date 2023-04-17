@@ -2,15 +2,11 @@
   "branches": [
     "main"
   ],
+  tagTemplate: "v${version}-live",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    [
-      "@semantic-release/exec",
-      {
-        "prepareCmd": "./bin/build_release ${nextRelease.version} \"${nextRelease.notes}\""
-      }
-    ],
+
     [
       "@semantic-release/git",
       {
