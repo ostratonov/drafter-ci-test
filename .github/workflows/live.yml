@@ -8,11 +8,14 @@ permissions:
   contents: read
 
 jobs:
-  update_release_draft:
+  deploy:
     permissions:
       contents: write
       pull-requests: write
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
     steps:
       - name: Use Node.js
         uses: actions/setup-node@v1

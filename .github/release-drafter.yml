@@ -4,7 +4,7 @@ categories:
   - title: 'Tickets'
     labels:
       - 'BLS'
-      - 'enhancement'
+      - 'STS'
   - title: 'Bug Fixes'
     labels:
       - 'fix'
