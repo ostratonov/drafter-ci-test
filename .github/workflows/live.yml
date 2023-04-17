@@ -32,7 +32,9 @@ jobs:
           commitish: main
       - name: Bump version
         run: |
-          npm version --new-version ${{ steps.Changelog.outputs.tag_name   }} 
+          npm version --new-version new-version
           git add package.json && git commit -m "ci skip" && git push && git push --tags
+        with:
+          new-version: ${{ steps.Changelog.outputs.tag_name }}
 
 
