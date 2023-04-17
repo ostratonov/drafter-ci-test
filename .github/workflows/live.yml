@@ -42,7 +42,7 @@ jobs:
       - name: Action For Semantic Release
         uses: cycjimmy/semantic-release-action@v3.4.2
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 
 
