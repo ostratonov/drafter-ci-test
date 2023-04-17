@@ -1,11 +1,11 @@
 {
   "name": "drafter-ci-test",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "",
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index.js",
-    "deployy": " git push && git push --tags"
+    "deployy": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \\\"Successfully released version $npm_package_version!\\\""
   },
   "repository": {
     "type": "git",
