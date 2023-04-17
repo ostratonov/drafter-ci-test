@@ -3,12 +3,19 @@ tag-template: 'v$RESOLVED_VERSION-live'
 categories:
   - title: 'Tickets'
     labels:
-      - 'BLS'
-      - 'STS'
+      - 'feature'
   - title: 'Bug Fixes'
     labels:
-      - 'fix'
       - 'bug'
+exclude-labels:
+  - 'skip-changelog'
+autolabeler:
+  - label: 'bug'
+    body:
+      - '/fix/'
+  - label: 'feature'
+    body:
+      - '/BLS|STS-[0-9]{1,4}/'
 change-template: '- $TITLE (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
