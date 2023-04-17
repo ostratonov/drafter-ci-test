@@ -28,6 +28,8 @@ jobs:
         uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          publish: true
+          commitish: main
       - name: Deploy version
         run: |
           yarn deploy:version
