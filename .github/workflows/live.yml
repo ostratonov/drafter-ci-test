@@ -30,11 +30,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           publish: true
           commitish: main
-      - name: Bump version
-        run: |
-          npm version --new-version new-version
-          git add package.json && git commit -m "ci skip" && git push && git push --tags
-        with:
-          new-version: ${{ steps.Changelog.outputs.tag_name }}
 
 
