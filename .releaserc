@@ -2,7 +2,7 @@
   "branches": [
     "main"
   ],
-  tagTemplate: "v${version}-live",
+  "tagTemplate": "v${version}-live",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
