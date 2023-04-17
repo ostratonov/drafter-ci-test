@@ -21,8 +21,15 @@ jobs:
         with:
           node-version: '14.x'
           cache: 'yarn'
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: caching-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run:  yarn --frozen-lockfile
+        if: steps.caching-dependencies.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
       - name: Changelog
         uses: release-drafter/release-drafter@v5
         env:
