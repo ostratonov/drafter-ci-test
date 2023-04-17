@@ -20,5 +20,8 @@
   "homepage": "https://github.com/ostratonov/drafter-ci-test#readme",
   "dependencies": {
     "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "semantic-release": "^21.0.1"
   }
 }
