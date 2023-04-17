@@ -35,8 +35,14 @@ jobs:
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #          publish: true
-#          commitish: main
-      - name: Release
-        run: npx semantic-release
+##          commitish: main
+#      - name: Release
+#        run: npx semantic-release
+
+      - name: Action For Semantic Release
+        uses: cycjimmy/semantic-release-action@v3.4.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
 
 
