@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install dependencies
-        run: npm install
+        run: yarn --frozen-lockfile
       - name: Changelog
         uses: release-drafter/release-drafter@v5
         env:
