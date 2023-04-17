@@ -27,7 +27,6 @@ jobs:
         uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          publish: true
       - name: Deploy version
         run: |
           yarn deployy
