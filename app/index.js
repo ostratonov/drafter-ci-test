@@ -1,3 +1,3 @@
 (function iife() {
-    console.log('Hello!')
+    console.log('woop woop!')
 })()
