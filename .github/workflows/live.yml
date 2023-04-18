@@ -2,8 +2,7 @@ name: Live Deployment
 
 on:
   push:
-    branches:
-      - main
+    branches: [main,test]
 permissions:
   contents: read
 
