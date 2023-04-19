@@ -1,11 +1,10 @@
 {
   "name": "drafter-ci-test",
-  "version": "1.5.1",
+  "version": "2.1.0",
   "description": "",
   "main": "app/index.js",
   "scripts": {
-    "start": "node app/index.js",
-    "deploy:version": "git push && git push --tags"
+    "start": "node app/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +18,13 @@
   },
   "homepage": "https://github.com/ostratonov/drafter-ci-test#readme",
   "dependencies": {
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "https://registry.npmjs.org/@achingbrain/semantic-release-github/-/semantic-release-github-0.0.0.tgz",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
-    "semantic-release": "^19.0.5"
+    "semantic-release": "^19.0.5",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "https://registry.npmjs.org/@achingbrain/semantic-release-github/-/semantic-release-github-0.0.0.tgz"
   }
 }
