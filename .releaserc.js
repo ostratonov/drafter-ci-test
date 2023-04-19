@@ -1,15 +1,13 @@
+'use strict';
+
+const assert = require('assert')
 const env = process.env.NODE_ENV
 
-module.exports = {
-    branches: env === 'live' ? ['main'] : ['dev'],
-    tagFormat: env === 'live' ? 'v${version}-live' : 'v${version}-dev',
-    plugins: env === 'live' ?
-        [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/github",
-        ] :
-        [
+const configurations = {
+    dev: {
+        branches: ['dev'],
+        tagFormat: 'v${version}-dev',
+        plugins: [
             "@semantic-release/commit-analyzer",
             "@semantic-release/release-notes-generator",
             "@semantic-release/github",
@@ -25,5 +23,20 @@ module.exports = {
                 }
             ]
         ]
+    },
+    live: {
+        branches: ['main'],
+        tagFormat: 'v${version}-live',
+        plugins: [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@semantic-release/github",
+        ]
+    }
+}
 
+module.exports = () => {
+    assert(env, 'NODE_ENV is not set. Check your environment .yml file.')
+
+    return configurations[env]
 }
