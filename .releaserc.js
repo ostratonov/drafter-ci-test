@@ -1,6 +1,7 @@
 const env = process.env.NODE_ENV
 
 module.exports = {
+    branches: env === 'live' ? ['main'] : ['dev'],
     tagFormat: env === 'live' ? 'v${version}-live' : 'v${version}-dev',
     plugins: env === 'live' ?
         [
