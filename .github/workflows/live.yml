@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 env:
-  NODE_ENV: dev
+  NODE_ENV: live
 
 jobs:
   deploy:
