@@ -38,5 +38,7 @@ const configurations = {
 module.exports = () => {
     assert(env, 'NODE_ENV is not set. Check your environment .yml file.')
 
+    console.log(configurations[env])
+
     return configurations[env]
 }
