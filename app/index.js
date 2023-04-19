@@ -1,3 +1,3 @@
 (function iife() {
-    console.log('Hello! Using semantic v2! ')
+    console.log('Patch applied')
 })()
