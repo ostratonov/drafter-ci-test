@@ -6,6 +6,9 @@ on:
 permissions:
   contents: read
 
+env:
+  NODE_ENV: dev
+
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"

@@ -1,8 +1,7 @@
 {
   "branches": [
-    "dev"
+    "live"
   ],
-  "tagFormat": "v${version}-dev",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
