@@ -1,5 +1,5 @@
 'use strict'
 
 module.exports = () => {
-    console.log('Patch applied')
+    console.log('Patch applied. Feature')
 }
