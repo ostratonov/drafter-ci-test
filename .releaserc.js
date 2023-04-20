@@ -8,8 +8,11 @@ const liveConfig = {
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         "@semantic-release/github",
+        // ["@semantic-release/exec", {
+        //     "successCmd": "bash ./scripts/jira/run-sync.sh ${nextRelease.notes}"
+        // }]
         ["@semantic-release/exec", {
-            "successCmd": "bash ./scripts/jira/run-sync.sh ${nextRelease.notes}"
+            "successCmd": "yarn jira:sync"
         }]
     ]
 }
