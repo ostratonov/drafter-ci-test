@@ -2,6 +2,6 @@
 
 module.exports = () => {
     process.argv.forEach(function (val, index) {
-        console.log(index + ': ' + val);
+        console.log(index + ' : ' + val);
     });
 }
