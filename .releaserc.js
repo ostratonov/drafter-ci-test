@@ -8,6 +8,9 @@ const liveConfig = {
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         "@semantic-release/github",
+        ["@semantic-release/exec", {
+            "successCmd": "yarn sync:jira ${nextRelease.notes} ${nextRelease.version}"
+        }]
     ]
 }
 
@@ -20,7 +23,7 @@ const devConfig = {
         "@semantic-release/github",
         ["@semantic-release/npm", {
             "npmPublish": false,
-          }
+        }
         ],
         [
             "@semantic-release/git",
@@ -29,6 +32,7 @@ const devConfig = {
                 "message": "chore(release): ${nextRelease.version} [ci skip]\n\n${nextRelease.notes}"
             }
         ]
+
     ]
 }
 
