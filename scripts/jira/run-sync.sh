@@ -1,4 +1,4 @@
 #!/bin/bash
 
-node ./index.js
+node ./scripts/jira
 

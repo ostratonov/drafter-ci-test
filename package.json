@@ -5,8 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index.js",
-    "sync:jira": "bash scripts/jira/run-sync.sh"
-
+    "sync:jira": "./scripts/jira/run-sync.sh"
   },
   "repository": {
     "type": "git",
