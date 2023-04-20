@@ -1,4 +1,4 @@
 #!/bin/bash
 
-node ./scripts/jira
+node ./scripts/jira "$2"
 
