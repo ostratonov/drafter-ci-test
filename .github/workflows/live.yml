@@ -33,9 +33,13 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Release
-        run: npx semantic-release
+        run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update jira tasks
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: yarn sync:jira -- context ${{ toJson(github) }}
 
 
 

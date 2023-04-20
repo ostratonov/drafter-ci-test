@@ -20,7 +20,7 @@ const devConfig = {
         "@semantic-release/github",
         ["@semantic-release/npm", {
             "npmPublish": false,
-        }
+          }
         ],
         [
             "@semantic-release/git",
