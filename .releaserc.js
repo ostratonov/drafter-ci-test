@@ -9,7 +9,7 @@ const liveConfig = {
         "@semantic-release/release-notes-generator",
         "@semantic-release/github",
         ["@semantic-release/exec", {
-            "successCmd": "./scripts/jira/run-sync.sh sync:jira ${nextRelease.notes} ${nextRelease.version}"
+            "successCmd": "bash ./scripts/jira/run-sync.sh sync:jira ${nextRelease.notes} ${nextRelease.version}"
         }]
     ]
 }
