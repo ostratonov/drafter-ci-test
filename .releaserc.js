@@ -12,7 +12,7 @@ const liveConfig = {
         //     "successCmd": "bash ./scripts/jira/run-sync.sh ${nextRelease.notes}"
         // }]
         ["@semantic-release/exec", {
-            "successCmd": "yarn jira:sync"
+            "successCmd": "yarn jira:sync ${nextRelease.notes}"
         }]
     ]
 }
