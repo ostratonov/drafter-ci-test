@@ -36,10 +36,6 @@ jobs:
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      - name: Update jira tasks
-#        env:
-#          GITHUB_CONTEXT: ${{ toJson(github) }}
-#        run: yarn sync:jira $GITHUB_CONTEXT
 
 
 
