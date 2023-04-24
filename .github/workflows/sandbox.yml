@@ -1,0 +1,39 @@
+name: Dev Deployment
+
+on:
+  push:
+    branches: sandbox
+permissions:
+  contents: read
+
+env:
+  NODE_ENV: sandbox
+
+jobs:
+  deploy:
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: caching-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        if: steps.caching-dependencies.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+      - name: Release
+        run: yarn jira:sync "${{ github.event.head_commit.message }}"
+
+
+
