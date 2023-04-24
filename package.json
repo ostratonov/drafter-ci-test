@@ -1,6 +1,6 @@
 {
   "name": "drafter-ci-test",
-  "version": "2.1.0",
+  "version": "1.4.0",
   "description": "",
   "main": "app/index.js",
   "scripts": {
