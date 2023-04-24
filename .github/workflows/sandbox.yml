@@ -33,7 +33,7 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Release
-        run: yarn jira:sync "${{ github.event.head_commit.message }}" "bla" "bla-bla"
+        run: yarn jira:sync "${{ github.event.head_commit.message }}" "bla" "bla-bla" "bla"
 
 
 
