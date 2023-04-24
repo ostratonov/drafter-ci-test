@@ -4,7 +4,7 @@ const readEnv = () => {
     const env = process.env.NODE_ENV || ''
     const envFile = `.env${env && '.' + env}`
 
-    const appEnvFile = require('path').resolve(__dirname, `../app/${envFile}`)
+    const appEnvFile = require('path').resolve(__dirname, `../../app/${envFile}`)
 
     const dotenv = require('dotenv').config({path: appEnvFile})
 
