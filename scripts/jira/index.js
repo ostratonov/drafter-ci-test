@@ -1,11 +1,26 @@
 'use strict'
 
-//require('./init')
+const readEnv = () => {
+    const env = process.env.NODE_ENV || ''
+    const envFile = `.env${env && '.' + env}`
 
-const processTasks = require('./process-tasks')
+    const appEnvFile = require('path').resolve(__dirname, `../app/${envFile}`)
 
-processTasks().then(() => process.exit(0)).catch(e => {
-    console.log(Error(e).stack, e)
+    const dotenv = require('dotenv').config({path: appEnvFile})
+
+    if (dotenv.error) {
+        console.warn('.env file is not loaded.', dotenv.error)
+
+        return Promise.reject()
+    }
+
+    return Promise.resolve()
+}
+
+const syncJira = require('./process-tasks')
+
+readEnv().then(() => syncJira()).catch(e => {
+    console.log(e)
 
     process.exit(-1)
 })
