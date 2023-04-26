@@ -2,7 +2,7 @@
 
 module.exports = () => {
     console.log('Args', process.argv)
-    console.log('Env', process.env)
+    console.log('Checking if the script with current configuration')
 
     return Promise.resolve()
 }
