@@ -51,7 +51,13 @@ const basePlugins = [
 const pluginsMap = {
     live: [
         ...basePlugins,
-        '@semantic-release/github',
+        [
+            '@semantic-release/github',
+            {
+                'successComment': false,
+                'failTitle': false,
+            },
+        ],
         [
             '@semantic-release/npm',
             {
