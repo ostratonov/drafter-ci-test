@@ -16,6 +16,9 @@ jobs:
       contents: write
       pull-requests: write
     runs-on: ubuntu-latest
+    outputs:
+      api-deployment-success: ${{ steps.api-deployment }}
+      db-deployment-success: ${{ steps.db-deployment }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -32,20 +35,39 @@ jobs:
       - name: Install dependencies
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
-#      - name: Release
-#        run: yarn semantic-release
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        id: api-deployment
+        run: echo "Build"
+      - name: Deploy DB
+        id: db-deployment
+        run: echo "Deploy DB"
   release:
     permissions:
       contents: write
       pull-requests: write
-    needs:
-      - deploy
+#    needs:
+#      - deploy
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: caching-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        if: steps.caching-dependencies.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+      - name: Check Vars
+        run: echo ${{deploy.outputs.api-deployment-success}}
       - name: Release
         run: yarn semantic-release
         env:
