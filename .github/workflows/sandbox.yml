@@ -16,9 +16,6 @@ jobs:
       contents: write
       pull-requests: write
     runs-on: ubuntu-latest
-    outputs:
-      api-deployment-success: ${{ steps.api-deployment }}
-      db-deployment-success: ${{ steps.db-deployment }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -69,7 +66,7 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Check Vars
-        run: echo ${{ needs.deploy.outputs.api-deployment-success }}
+        run: echo ${{ needs.deploy.outputs.api-deployment }}
       - name: Release
         run: yarn semantic-release
         env:
