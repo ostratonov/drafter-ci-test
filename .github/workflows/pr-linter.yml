@@ -33,8 +33,8 @@ jobs:
             chore
             revert
           scopes: |
-            STS-\d+,*
-            BLS-\d+,*
+            STS-\d+ \s*.*
+            BLS-\d+ \s*.*$
           requireScope: true
           # Configure which scopes are disallowed in PR titles (newline-delimited).
           # For instance by setting the value below, `chore(release): ...` (lowercase)
@@ -48,23 +48,6 @@ jobs:
             The subject "{subject}" found in the pull request title "{title}"
             didn't match the configured pattern. Please ensure that the subject
             doesn't start with an uppercase character.
-          # If the PR contains one of these newline-delimited labels, the
-          # validation is skipped. If you want to rerun the validation when
-          # labels change, you might want to use the `labeled` and `unlabeled`
-          # event triggers in your workflow.
           ignoreLabels: |
             skip-pr-validation
-          # If you're using a format for the PR title that differs from the traditional Conventional
-          # Commits spec, you can use these options to customize the parsing of the type, scope and
-          # subject. The `headerPattern` should contain a regex where the capturing groups in parentheses
-          # correspond to the parts listed in `headerPatternCorrespondence`.
-          # See: https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-commits-parser#headerpattern
-          # headerPattern: '^(\w*)(?:\(([\w$.\-*/ ]*)\))?: (.*)$'
-          # headerPatternCorrespondence: type, scope, subject
-          # For work-in-progress PRs you can typically use draft pull requests
-          # from GitHub. However, private repositories on the free plan don't have
-          # this option and therefore this action allows you to opt-in to using the
-          # special "[WIP]" prefix to indicate this state. This will avoid the
-          # validation of the PR title and the pull request checks remain pending.
-          # Note that a second check will be reported if this is enabled.
           wip: false
