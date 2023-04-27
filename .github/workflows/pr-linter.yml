@@ -1,23 +1,26 @@
 name: "PR linter"
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - edited
       - synchronize
       - reopened
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
   validate:
     name: Validate PR title
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     steps:
       - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
       - uses: amannn/action-semantic-pull-request@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -37,7 +40,6 @@ jobs:
           scopes: |
             STS-\d+,*
             BLS-\d+,*
-          # Configure that a scope must always be provided.
           requireScope: true
           # Configure which scopes are disallowed in PR titles (newline-delimited).
           # For instance by setting the value below, `chore(release): ...` (lowercase)
