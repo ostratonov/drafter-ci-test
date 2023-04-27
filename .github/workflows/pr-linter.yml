@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: read-all
     steps:
+      - uses: actions/checkout@v3
       - uses: amannn/action-semantic-pull-request@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
