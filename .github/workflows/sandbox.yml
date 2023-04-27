@@ -16,8 +16,8 @@ jobs:
       contents: write
       pull-requests: write
     outputs:
-      output1: ${{ steps.api-deployment.outputs }}
-      output2: ${{ steps.db-deployment.outputs }}
+      output1: ${{ steps.api-deployment.outputs.success }}
+      output2: ${{ steps.db-deployment.outputs.success }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,11 +38,11 @@ jobs:
       - name: Build
         id: api-deployment
         run: |
-         echo "true" >> "$api-deployment-success"
+          echo "success=true" >> "$api-deployment-success"
       - name: Deploy DB
         id: db-deployment
         run: |
-         echo "true" >> "$db-deployment-success"
+          echo "success=true" >> "$db-deployment-success"
   release:
     permissions:
       contents: write
