@@ -16,8 +16,8 @@ jobs:
       contents: write
       pull-requests: write
     outputs:
-      output1: ${{ steps.api-deployment.outputs.success }}
-      output2: ${{ steps.db-deployment.outputs.success }}
+      api-deployment: ${{ steps.api-deployment.outputs.success }}
+      db-deployment: ${{ steps.db-deployment.outputs.success }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -71,12 +71,15 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Check Vars
-        run: echo ${{ toJson(needs.deploy) }}
+        run: |
+         echo ${{ needs.deploy.outputs.api-deployment }}
+         echo ${{ needs.deploy.outputs.db-deployment }}
       - name: Release
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Wohoo
+        run: echo ":rocket:" >> "$GITHUB_STEP_SUMMARY"
 
 
 
