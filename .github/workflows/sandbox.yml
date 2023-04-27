@@ -71,7 +71,7 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Check Vars
-        run: echo ${{ toJson(needs.deploy.outputs) }}
+        run: echo ${{ toJson(needs.deploy) }}
       - name: Release
         run: yarn semantic-release
         env:
