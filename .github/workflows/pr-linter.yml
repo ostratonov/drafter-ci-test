@@ -11,7 +11,7 @@ jobs:
   validate:
     name: Validate PR title
     runs-on: ubuntu-latest
-    permissions: read-all, write-all
+    permissions: read-all|write-all
     steps:
       - uses: actions/checkout@v3
       - uses: amannn/action-semantic-pull-request@v5
