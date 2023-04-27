@@ -42,14 +42,13 @@ jobs:
       - name: Deploy DB
         id: db-deployment
         run: |
-          echo "success=false" >> "$GITHUB_OUTPUT"
+          echo "success=true" >> "$GITHUB_OUTPUT"
 
   release:
     permissions:
       contents: write
       pull-requests: write
-    if: |
-      (needs.deploy.outputs.api-deployment == true && needs.deploy.outputs.db-deployment == true)
+    if: needs.deploy.outputs.api-deployment == true && needs.deploy.outputs.db-deployment == true
     needs:
       - deploy
     runs-on: ubuntu-latest
