@@ -38,11 +38,11 @@ jobs:
       - name: Build
         id: api-deployment
         run: |
-          echo "success=true" >> "$api-deployment-success"
+          echo "success=true" >> "$GITHUB_OUTPUT"
       - name: Deploy DB
         id: db-deployment
         run: |
-          echo "success=true" >> "$db-deployment-success"
+          echo "success=true" >> "$GITHUB_OUTPUT"
   release:
     permissions:
       contents: write
@@ -72,8 +72,8 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Check Vars
         run: |
-         echo ${{ needs.deploy.outputs.api-deployment }}
-         echo ${{ needs.deploy.outputs.db-deployment }}
+          echo ${{ needs.deploy.outputs.api-deployment }}
+          echo ${{ needs.deploy.outputs.db-deployment }}
       - name: Release
         run: yarn semantic-release
         env:
