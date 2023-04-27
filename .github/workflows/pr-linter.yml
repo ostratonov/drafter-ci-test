@@ -34,7 +34,7 @@ jobs:
             revert
           scopes: |
             STS-\d+,\s*.*
-            BLS-\d+,\s*.*
+            ^BLS-\d+,\s*.*$
           requireScope: true
           # Configure which scopes are disallowed in PR titles (newline-delimited).
           # For instance by setting the value below, `chore(release): ...` (lowercase)
