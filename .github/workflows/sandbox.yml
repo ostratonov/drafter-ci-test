@@ -34,7 +34,9 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Build
         id: api-deployment
-        run: echo "Build"
+        run: |
+         echo "Build"
+         set
       - name: Deploy DB
         id: db-deployment
         run: echo "Deploy DB"
