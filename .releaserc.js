@@ -20,17 +20,16 @@ const basePlugins = [
             'releaseRules': [
                 {
                     'type': 'refactor',
-                    'scope': 'core-*',
-                    'release': 'minor',
-                },
-                {
-                    'type': 'refactor',
                     'release': 'patch',
                 },
                 {
                     'scope': 'no-release',
                     'release': false,
                 },
+                {
+                    'type': 'schema',
+                    'release': 'patch',
+                }
             ],
             'parserOpts': {
                 'noteKeywords': [
@@ -51,7 +50,13 @@ const basePlugins = [
 const pluginsMap = {
     live: [
         ...basePlugins,
-        '@semantic-release/github',
+        [
+            '@semantic-release/github',
+            {
+                'successComment': false,
+                'failTitle': false,
+            },
+        ],
         [
             '@semantic-release/npm',
             {
