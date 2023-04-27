@@ -35,11 +35,11 @@ jobs:
       - name: Build
         id: api-deployment
         run: |
-         echo "Build"
-         set
+         echo "true" >> "$api-deployment-success"
       - name: Deploy DB
         id: db-deployment
-        run: echo "Deploy DB"
+        run: |
+         echo "true" >> "$db-deployment-success"
   release:
     permissions:
       contents: write
