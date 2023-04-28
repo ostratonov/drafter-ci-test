@@ -33,11 +33,12 @@ jobs:
             chore
             revert
           requireScope: true
-          subjectPattern: ^.*\s*(?:BLS|STS)-\d+$
+          subjectPattern: ^.*\s*\((?:BLS|STS)-\d+\)$
           subjectPatternError: |
             The subject "{subject}" found in the pull request title "{title}"
             didn't match the configured pattern. Please ensure that the subject
-            has BLS or STS ticket number. For example, "improved performance, BLS-1234".
+            has BLS or STS ticket number, and it is wrapped up in brackets.
+            For example, "improved performance, (BLS-1234)".
           ignoreLabels: |
             skip-pr-validation
           wip: false
