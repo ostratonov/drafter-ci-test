@@ -32,15 +32,12 @@ jobs:
             ci
             chore
             revert
-          scopes: |
-            STS-\d+\s*\[.*\]
-            BLS-\d+\s*\[.*\]
           requireScope: true
-          subjectPattern: ^(?![A-Z]).+$
+          subjectPattern: ^.*\s*(?:BLS|STS)-\d+$
           subjectPatternError: |
             The subject "{subject}" found in the pull request title "{title}"
             didn't match the configured pattern. Please ensure that the subject
-            doesn't start with an uppercase character.
+            has BLS or STS ticket number. For example, "improved performance, BLS-1234".
           ignoreLabels: |
             skip-pr-validation
           wip: false
