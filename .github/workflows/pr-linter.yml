@@ -1,4 +1,4 @@
-name: "PR linter"
+name: "Pull Request Flow"
 
 on:
   pull_request:
@@ -9,11 +9,12 @@ on:
       - reopened
 
 jobs:
-  validate:
-    name: Validate PR title
+  validate_pr_name:
+    name: Validate pull request title
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
+      contents: read
     steps:
       - uses: actions/checkout@v3
       - uses: amannn/action-semantic-pull-request@v5.2.0
@@ -42,3 +43,30 @@ jobs:
           ignoreLabels: |
             skip-pr-validation
           wip: false
+  sync_jira_ticket:
+    name: AAAA
+    runs-on: ubuntu-latest
+    needs: validate_pr_name
+    permissions:
+      pull-requests: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: caching-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        if: steps.caching-dependencies.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+      - name: Update Jira ticket
+        run: |
+          yarn jira:sync "${nextRelease.notes}" "${nextRelease.version}" "{\"reviewOnly\" : true}"
+
