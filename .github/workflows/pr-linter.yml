@@ -68,5 +68,5 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Update Jira ticket
         run: |
-          yarn jira:sync '' '' "{\"reviewOnly\" : true}"
+          yarn jira:sync ${{ github.event.head_commit.message }} '' "{\"reviewOnly\" : true}"
 
