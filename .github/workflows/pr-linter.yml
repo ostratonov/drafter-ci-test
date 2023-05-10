@@ -68,7 +68,7 @@ jobs:
       - name: Install dependencies
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
-      - name: Update Jira ticket
+      - name: Update Jira ticket...
         run: |
           yarn jira:sync "${nextRelease.notes}" "${nextRelease.version}" "{\"reviewOnly\" : true}"
 
