@@ -68,5 +68,5 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Update Jira ticket
         run: |
-          yarn jira:sync "${nextRelease.notes}" "${nextRelease.version}" "{\"reviewOnly\" : true}"
+          yarn jira:sync '' '' "{\"reviewOnly\" : true}"
 
