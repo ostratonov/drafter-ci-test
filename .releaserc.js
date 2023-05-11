@@ -42,7 +42,7 @@ const basePlugins = [
     [
         '@semantic-release/exec',
         {
-            'successCmd': 'yarn jira:sync "${nextRelease.notes}" "${nextRelease.version}"',
+            'successCmd': 'yarn jira:sync "\${nextRelease.notes}" "${nextRelease.version}"',
         },
     ],
 ]
