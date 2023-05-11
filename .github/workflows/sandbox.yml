@@ -15,6 +15,9 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    outputs:
+      api-deployment: ${{ steps.api-deployment.outputs.success }}
+      db-deployment: ${{ steps.db-deployment.outputs.success }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,18 +38,18 @@ jobs:
       - name: Build
         id: api-deployment
         run: |
-         echo "true" >> "$api-deployment-success"
+          echo "success=true" >> "$GITHUB_OUTPUT"
       - name: Deploy DB
         id: db-deployment
         run: |
-         echo "true" >> "$db-deployment-success"
+          echo "success=true" >> "$GITHUB_OUTPUT"
+
   release:
     permissions:
       contents: write
       pull-requests: write
-    if: |
-      !contains(github.event.head_commit.message, 'ci skip')
-    #      || (deploy.outputs.api-deployment-success == 'success' && deploy.outputs.db-deployment-success == 'success'
+#    if: |
+#      needs.deploy.outputs.api-deployment == true && needs.deploy.outputs.db-deployment == true
     needs:
       - deploy
     runs-on: ubuntu-latest
@@ -68,12 +71,13 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Check Vars
-        run: echo ${{ toJson(needs.deploy.outputs) }}
+        run: |
+          echo ${{ needs.deploy.outputs.api-deployment }}
+          echo ${{ needs.deploy.outputs.db-deployment }}
       - name: Release
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
 
 

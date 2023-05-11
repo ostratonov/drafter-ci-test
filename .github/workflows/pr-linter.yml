@@ -1,4 +1,4 @@
-name: "PR linter"
+name: "Pull Request Flow"
 
 on:
   pull_request:
@@ -9,11 +9,12 @@ on:
       - reopened
 
 jobs:
-  validate:
-    name: Validate PR title
+  validate_pr_name:
+    name: Validate pull request title
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
+      contents: read
     steps:
       - uses: actions/checkout@v3
       - uses: amannn/action-semantic-pull-request@v5.2.0
@@ -32,15 +33,42 @@ jobs:
             ci
             chore
             revert
-          scopes: |
-            STS-\d+\s*\[.*\]
-            BLS-\d+\s*\[.*\]
           requireScope: true
-          subjectPattern: ^(?![A-Z]).+$
+          subjectPattern: ^.*\s*\((?:(?:BLS|STS)-\d+(?:\s+|,\s*)*){1,3}\)$
           subjectPatternError: |
             The subject "{subject}" found in the pull request title "{title}"
             didn't match the configured pattern. Please ensure that the subject
-            doesn't start with an uppercase character.
+            has BLS or STS ticket number, and it is wrapped up in brackets.
+            For example, "improved performance, (BLS-1234)".
+            If there are two or more tickets provided, use next formatting: 
+            "improved performance, (BLS-1234, BLS-1235)"
           ignoreLabels: |
             skip-pr-validation
           wip: false
+  sync_jira_ticket:
+    name: AAAA
+    runs-on: ubuntu-latest
+    needs: validate_pr_name
+    permissions:
+      pull-requests: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: caching-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        if: steps.caching-dependencies.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+      - name: Update Jira ticket
+        run: |
+          yarn jira:sync "${nextRelease.notes}" "${nextRelease.version}" "{\"reviewOnly\" : true}"
+
