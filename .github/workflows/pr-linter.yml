@@ -69,8 +69,8 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Update Jira ticket
-        env:
-            PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           yarn jira:sync "\$PR_TITLE" '' "{\"reviewOnly\" : true}"
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
 
