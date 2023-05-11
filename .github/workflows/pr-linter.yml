@@ -34,7 +34,7 @@ jobs:
             chore
             revert
           requireScope: true
-          subjectPattern: /^.*\s*\((?:(?:BLS|STS)-\d+(?:\s+|,\s*)*){1,3}\)$/gm
+          subjectPattern: ^.*\s*\((?:(?:BLS|STS)-\d+(?:\s+|,\s*)*){1,3}\)$
           subjectPatternError: |
             The subject "{subject}" found in the pull request title "{title}"
             didn't match the configured pattern. Please ensure that the subject
