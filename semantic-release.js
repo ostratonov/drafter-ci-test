@@ -1,6 +1,6 @@
 (async () => {
     const semanticRelease = require('semantic-release')
-    const syncJira = require('./scripts/jira')
+    const syncJira = require('./scripts/sync/jira')
 
     const tagFormatMap = {
         live: 'v${version}',
@@ -20,35 +20,29 @@
         [
             '@semantic-release/commit-analyzer',
             {
-                'preset': 'angular',
-                'releaseRules': [
+                preset: 'angular',
+                releaseRules: [
                     {
-                        'type': 'refactor',
-                        'release': 'patch',
+                        type: 'refactor',
+                        release: 'patch',
                     },
                     {
-                        'scope': 'no-release',
-                        'release': false,
+                        scope: 'no-release',
+                        release: false,
                     },
                     {
-                        'type': 'schema',
-                        'release': 'patch',
-                    }
+                        type: 'schema',
+                        release: 'patch',
+                    },
                 ],
-                'parserOpts': {
-                    'noteKeywords': [
+                parserOpts: {
+                    noteKeywords: [
                         'BREAKING',
                     ],
                 },
             },
         ],
         '@semantic-release/release-notes-generator',
-        [
-            '@semantic-release/exec',
-            {
-                'successCmd': 'yarn jira:sync "\${nextRelease.notes}" "${nextRelease.version}"',
-            },
-        ],
     ]
 
     const pluginsMap = {
@@ -57,23 +51,23 @@
             [
                 '@semantic-release/github',
                 {
-                    'successComment': false,
-                    'failTitle': false,
+                    successComment: false,
+                    failTitle: false,
                 },
             ],
             [
                 '@semantic-release/npm',
                 {
-                    'npmPublish': false,
+                    npmPublish: false,
                 },
             ],
             [
                 '@semantic-release/git',
                 {
-                    'assets': [
+                    assets: [
                         'package.json',
                     ],
-                    'message': 'release: ${nextRelease.version} [ci skip]\n\n${nextRelease.notes}',
+                    message: 'release: ${nextRelease.version} [ci skip]',
                 },
             ],
         ],
@@ -83,24 +77,23 @@
     }
 
     const getConfig = () => ({
-        'branches': branchesMap[process.env.NODE_ENV],
-        'tagFormat': tagFormatMap[process.env.NODE_ENV],
-        'plugins': pluginsMap[process.env.NODE_ENV],
+        branches: branchesMap[process.env.NODE_ENV],
+        tagFormat: tagFormatMap[process.env.NODE_ENV],
+        plugins: pluginsMap[process.env.NODE_ENV],
     })
 
     try {
         const result = await semanticRelease(getConfig())
 
         if (!result) {
-            console.log("No release published.")
+            console.log('No release published.')
         }
 
         const {nextRelease} = result
 
         await syncJira(nextRelease.notes, nextRelease.version, {reviewOnly: false})
-
     } catch (err) {
-        console.error("The automated release failed. Error:c", err);
+        console.error('The automated release failed. Error: ', err.message)
     }
 })()
 
