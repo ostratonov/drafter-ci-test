@@ -2,6 +2,10 @@
     const semanticRelease = require('semantic-release')
     const syncJira = require('./scripts/sync/jira')
 
+    // require('backendless')
+    // require('backendless-coderunner/lib')
+    // require('../app/bootstrap')
+
     const tagFormatMap = {
         live: 'v${version}',
         dev: 'v${version}-dev',
