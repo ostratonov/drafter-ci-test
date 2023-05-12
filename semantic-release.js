@@ -1,5 +1,6 @@
 (async () => {
     const semanticRelease = require('semantic-release')
+    const syncJira = require('./scripts/jira')
 
     const tagFormatMap = {
         live: 'v${version}',
@@ -88,29 +89,18 @@
     })
 
     try {
-        const config = getConfig()
-        console.log('config', config)
-        const result = await semanticRelease({...config})
+        const result = await semanticRelease(getConfig())
 
-        if (result) {
-            const {lastRelease, commits, nextRelease, releases} = result;
-
-            console.log(
-                `Published ${nextRelease.type} release version ${nextRelease.version} containing ${commits.length} commits.`
-            );
-
-            if (lastRelease.version) {
-                console.log(`The last release was "${lastRelease.version}".`);
-            }
-
-            for (const release of releases) {
-                console.log(`The release was published with plugin "${release.pluginName}".`);
-            }
-        } else {
-            console.log("No release published.");
+        if (!result) {
+            console.log("No release published.")
         }
+
+        const {nextRelease} = result
+
+        await syncJira(nextRelease.notes, nextRelease.version, {reviewOnly: false})
+
     } catch (err) {
-        console.error("The automated release failed with %O", err);
+        console.error("The automated release failed. Error:c", err);
     }
 })()
 
