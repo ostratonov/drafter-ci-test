@@ -8,8 +8,12 @@
 
 const syncJira = require('./sync/jira')
 
-syncJira(process.argv).catch(e => {
-  console.log(e)
+const patchNotes = process.argv[2]
+const patchVersion = process.argv[3]
+const options = process.argv[4]
 
-  process.exit(-1)
+syncJira(patchNotes, patchVersion, options).catch(e => {
+    console.log(e)
+
+    process.exit(-1)
 })
