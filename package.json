@@ -5,7 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index.js",
-    "jira:sync": "node scripts/jira"
+    "jira:sync": "node scripts/jira",
+    "release": "node scripts/semantic-release.js"
   },
   "repository": {
     "type": "git",

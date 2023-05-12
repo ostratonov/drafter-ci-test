@@ -33,7 +33,7 @@ jobs:
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Release
-        run: yarn semantic-release
+        run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
