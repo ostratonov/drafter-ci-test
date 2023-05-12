@@ -90,7 +90,7 @@
     try {
         const config = getConfig()
         console.log('config', config)
-        const result = await semanticRelease({config})
+        const result = await semanticRelease({...config})
 
         if (result) {
             const {lastRelease, commits, nextRelease, releases} = result;
