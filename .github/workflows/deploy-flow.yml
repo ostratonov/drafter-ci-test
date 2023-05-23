@@ -1,4 +1,4 @@
-run-name: Deploy to ${{ github.event.ref_name }}
+run-name: Deploy to ${{ github.ref_name }}
 
 on:
   push:
@@ -40,8 +40,10 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Check variables
         run: |
-          echo "${{ vars.NODE_ENV }}"
-          echo "${{ secrets.TEST_SECRET }}"
+          echo "1${{ github.ref_name }}"
+          echo "2${{ github.event.ref_name }}"
+          echo "3${{ vars.NODE_ENV }}"
+          echo "4${{ secrets.TEST_SECRET }}"
       - name: Make script envfile
         uses: canastro/copy-file-action@master
         with:
