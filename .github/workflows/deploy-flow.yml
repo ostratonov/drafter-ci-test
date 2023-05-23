@@ -36,7 +36,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Check variables
         run: |
-          echo "ref : ${{ github.event.pull_request.base.ref }}"
+          echo "base ref : ${{ github.event.pull_request.base.ref }}"
           echo "${{ vars.NODE_ENV }}"
           echo "${{ secrets.TEST_SECRET }}"
           echo ${{ github.ref }}
