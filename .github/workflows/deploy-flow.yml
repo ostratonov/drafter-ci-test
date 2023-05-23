@@ -13,7 +13,7 @@ env:
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment: ${{ github.ref_name == 'main' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}
+    environment: env.NODE_ENV
     permissions:
       contents: write
       pull-requests: write
