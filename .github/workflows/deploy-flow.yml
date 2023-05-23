@@ -7,7 +7,7 @@ permissions:
   contents: read
 env:
   NODE_ENV: ${{ github.ref_name == 'master' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}
-  DOTENV_NAME: .env.$NODE_ENV
+  DOTENV_NAME: ".env.$NODE_ENV"
 
 
 jobs:
@@ -45,8 +45,8 @@ jobs:
         run: |
           echo "1 $NODE_ENV"
           echo "2 $DOTENV_NAME"
-          echo "4${{ secrets.TEST_SECRET }}"
-          echo "4${{ vars.TEST_VAR }}"
+          echo "3 ${{ secrets.TEST_SECRET }}"
+          echo "4 ${{ vars.TEST_VAR }}"
       - name: Make script envfile
         uses: canastro/copy-file-action@master
         with:
