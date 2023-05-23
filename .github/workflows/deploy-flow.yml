@@ -1,10 +1,11 @@
-run-name: Deploy to ${{ github.head_ref }}
+run-name: Deploy to ${{ github.event.pull_request.base.ref }}
 
 on:
   push:
     branches: [ sandbox, main, develop ]
 permissions:
   contents: read
+
 
 jobs:
   deploy:
@@ -35,7 +36,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Check variables
         run: |
-          echo "ref : ${{ github.head_ref }}"
+          echo "ref : ${{ github.event.pull_request.base.ref }}"
           echo "${{ vars.NODE_ENV }}"
           echo "${{ secrets.TEST_SECRET }}"
           echo ${{ github.ref }}
