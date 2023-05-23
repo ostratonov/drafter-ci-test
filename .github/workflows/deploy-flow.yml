@@ -57,9 +57,8 @@ jobs:
         id: db-deployment
         run: |
           echo "success=true" >> "$GITHUB_OUTPUT"
-      - name: deploy files
+      - name: Deploy files
         if: ${{ github.ref_name }} == 'live'
-        id: files-deployment
         run: |
           echo ${{ env.NODE_ENV }}
           echo $NODE_ENV
