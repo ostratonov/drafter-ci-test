@@ -7,7 +7,7 @@ permissions:
   contents: read
 env:
   NODE_ENV: ${{ github.ref_name == 'master' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}
-  DOTENV_NAME: .env.${{ env.NODE_ENV }}
+  DOTENV_NAME: .env.$NODE_ENV
 
 
 jobs:
