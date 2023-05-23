@@ -61,6 +61,8 @@ jobs:
         id: files-deployment
         if: ${{ env.NODE_ENV }} != 'live'
         run: |
+          echo ${{ env.NODE_ENV }}
+          echo $NODE_ENV
           yarn start
           echo "success=true" >> "$GITHUB_OUTPUT"
 
