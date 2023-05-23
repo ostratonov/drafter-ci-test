@@ -13,8 +13,7 @@ env:
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment:
-      name: ${{ env.NODE_ENV }}
+    environment: ${{ github.ref_name == 'master' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}
     permissions:
       contents: write
       pull-requests: write
@@ -38,10 +37,6 @@ jobs:
       - name: Install dependencies
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
@@ -64,6 +59,7 @@ jobs:
           echo "success=true" >> "$GITHUB_OUTPUT"
       - name: deploy files
         id: files-deployment
+        if: ${{ env.NODE_ENV }} !== 'sandbox'
         run: |
           yarn start
           echo "success=true" >> "$GITHUB_OUTPUT"
