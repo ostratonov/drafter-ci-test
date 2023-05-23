@@ -1,4 +1,4 @@
-run-name: Deploy to ${{ github.base_ref }}
+run-name: Deploy to ${{ github.head_ref }}
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment: ${{ github.base_ref }}
+    environment: ${{ github.head_ref }}
     permissions:
       contents: write
       pull-requests: write
@@ -35,6 +35,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Check variables
         run: |
+          echo "ref : ${{ github.head_ref }}"
           echo "${{ vars.NODE_ENV }}"
           echo "${{ secrets.TEST_SECRET }}"
           echo "${{ github.event }}"
