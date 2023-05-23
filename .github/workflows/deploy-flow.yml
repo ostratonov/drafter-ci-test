@@ -38,7 +38,7 @@ jobs:
           echo "ref : ${{ github.head_ref }}"
           echo "${{ vars.NODE_ENV }}"
           echo "${{ secrets.TEST_SECRET }}"
-          echo "${{ github.event }}"
+          echo "${{ toJson(github.event) }}"
       - name: Make script envfile
         uses: canastro/copy-file-action@master
         with:
