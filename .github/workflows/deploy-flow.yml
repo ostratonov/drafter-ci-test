@@ -5,12 +5,15 @@ on:
     branches: [ sandbox, main, develop ]
 permissions:
   contents: read
+env:
+  NODE_ENV: ${{ github.ref_name == 'master' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}
+  DOTENV_NAME: .env.${{ env.NODE_ENV }}
 
 
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment: ${{ github.head_ref }}
+    environment: ${{ env.NODE_ENV }}
     permissions:
       contents: write
       pull-requests: write
@@ -40,10 +43,10 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Check variables
         run: |
-          echo "1${{ github.ref_name }}"
-          echo "2${{ github.event.ref_name }}"
-          echo "3${{ vars.NODE_ENV }}"
+          echo "1${{ env.NODE_ENV }}"
+          echo "2${{ env.DOTENV_NAME }}"
           echo "4${{ secrets.TEST_SECRET }}"
+          echo "4${{ vars.TEST_VAR }}"
       - name: Make script envfile
         uses: canastro/copy-file-action@master
         with:
