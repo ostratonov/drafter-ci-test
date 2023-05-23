@@ -1,4 +1,4 @@
-run-name: Deploy to ${{ github.event.pull_request.base.ref }}
+run-name: Deploy to ${{ github.event.ref_name }}
 
 on:
   push:
