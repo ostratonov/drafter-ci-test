@@ -89,7 +89,7 @@
     try {
         const result = await semanticRelease(getConfig())
 
-        console.log(process.env.NODE_ENV)
+        console.log('node env', process.env.NODE_ENV)
 
         if (!result) {
             console.log('No release published.')
