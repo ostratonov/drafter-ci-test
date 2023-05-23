@@ -1,15 +1,15 @@
-run-name: Deploy to ${{ github.event.pull_request.base.ref }}
+run-name: Deploy to ${{ github.base_ref }}
 
 on:
   push:
-    branches: [ sandbox, main ]
+    branches: [ sandbox, main, develop ]
 permissions:
   contents: read
 
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment: sandbox
+    environment: ${{ github.base_ref }}
     permissions:
       contents: write
       pull-requests: write
