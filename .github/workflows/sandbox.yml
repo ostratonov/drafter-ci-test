@@ -42,11 +42,11 @@ jobs:
       - name: Deploy DB
         id: db-deployment
         run: |
+          yarn start
           echo "success=true" >> "$GITHUB_OUTPUT"
       - name: deploy files
         id: files-deployment
         run: |
-          yarn start
           echo "success=true" >> "$GITHUB_OUTPUT"
 
   release:
