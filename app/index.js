@@ -1,4 +1,3 @@
 (function iife() {
-    console.log('Patch applied v8')
-    throw new Error('oops')
+    console.log('Patch applied v9 lubov')
 })()
