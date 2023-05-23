@@ -2,14 +2,14 @@ run-name: Deploy to ${{ github.event.pull_request.base.ref }}
 
 on:
   push:
-    branches: sandbox
+    branches: [ sandbox, main ]
 permissions:
   contents: read
 
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment: ${{ vars.NODE_ENV }}
+    environment: sandbox
     permissions:
       contents: write
       pull-requests: write
@@ -37,6 +37,7 @@ jobs:
         run: |
           echo "${{ vars.NODE_ENV }}"
           echo "${{ secrets.TEST_SECRET }}"
+          echo "${{ github.event }}"
       - name: Make script envfile
         uses: canastro/copy-file-action@master
         with:
