@@ -53,16 +53,18 @@ jobs:
         id: api-deployment
         run: |
           echo "success=true" >> "$GITHUB_OUTPUT"
-      - name: Deploy files
-        if: "${{ github.ref_name }} != sandbox"
-        run: |
-          echo ${{ env.NODE_ENV }}
-          echo $NODE_ENV
-          yarn start
       - name: Deploy DB
         id: db-deployment
         run: |
           echo "success=true" >> "$GITHUB_OUTPUT"
+      - name: Deploy files
+        if: env.NODE_ENV != 'sandbox'
+        id: files-deployment
+        run: |
+          echo ${{ env.NODE_ENV }}
+          echo $NODE_ENV
+          yarn start
+
   release:
     permissions:
       contents: write
