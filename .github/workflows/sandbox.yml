@@ -54,6 +54,7 @@ jobs:
       contents: write
       pull-requests: write
     if: |
+      always() &&
       needs.deploy.outputs.api-deployment == 'true' && needs.deploy.outputs.db-deployment == 'true'
     needs:
       - deploy
