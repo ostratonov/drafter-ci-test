@@ -34,12 +34,14 @@ jobs:
       - name: Install dependencies
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Check variables
         run: |
-          echo "base ref : ${{ github.event.pull_request.base.ref }}"
           echo "${{ vars.NODE_ENV }}"
           echo "${{ secrets.TEST_SECRET }}"
-          echo ${{ github.ref }}
       - name: Make script envfile
         uses: canastro/copy-file-action@master
         with:
