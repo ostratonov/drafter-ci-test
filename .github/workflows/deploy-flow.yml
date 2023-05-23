@@ -41,17 +41,18 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          file_name: $DOTENV_NAME
+          envkey_TEST: ${{ secrets.TEST_SECRET }}
+          envkey_TEST_VAR: ${{ vars.TEST_VAR }}
       - name: Check variables
         run: |
           echo "1 $NODE_ENV"
           echo "2 $DOTENV_NAME"
           echo "3 ${{ secrets.TEST_SECRET }}"
           echo "4 ${{ vars.TEST_VAR }}"
-      - name: Make script envfile
-        uses: canastro/copy-file-action@master
-        with:
-          source: "./app/.env"
-          target: "$DOTENV_NAME"
       - name: Build
         id: api-deployment
         run: |
