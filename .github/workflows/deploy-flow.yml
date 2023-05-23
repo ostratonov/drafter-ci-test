@@ -98,7 +98,7 @@ jobs:
           echo ${{ needs.deploy.outputs.api-deployment }}
           echo ${{ needs.deploy.outputs.db-deployment }}
       - name: Release
-        run: yarn semantic-release
+        run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_ENV: ${{ env.NODE_ENV }}
