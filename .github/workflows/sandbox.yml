@@ -42,7 +42,8 @@ jobs:
       - name: Deploy DB
         id: db-deployment
         run: |
-          echo "success=false" >> "$GITHUB_OUTPUT"
+          yarn start
+          echo "success=true" >> "$GITHUB_OUTPUT"
       - name: deploy files
         id: files-deployment
         run: |
