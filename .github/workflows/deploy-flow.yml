@@ -51,7 +51,7 @@ jobs:
         uses: canastro/copy-file-action@master
         with:
           source: "./app/.env"
-          target: ".env.${{ vars.NODE_ENV }}"
+          target: "$DOTENV_NAME"
       - name: Build
         id: api-deployment
         run: |
