@@ -59,7 +59,7 @@ jobs:
           echo "success=true" >> "$GITHUB_OUTPUT"
       - name: deploy files
         id: files-deployment
-        if: ${{ env.NODE_ENV }} != 'live'
+        if: $NODE_ENV != 'sandbox'
         run: |
           echo ${{ env.NODE_ENV }}
           echo $NODE_ENV
