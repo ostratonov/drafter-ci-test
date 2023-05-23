@@ -14,7 +14,7 @@ jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     environment:
-      name: $NODE_ENV || sandbox
+      name: sandbox
     permissions:
       contents: write
       pull-requests: write
