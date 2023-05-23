@@ -40,7 +40,7 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
-          file_name: .env
+          file_name: app/.env
           envkey_NODE_ENV: ${{ env.NODE_ENV }}
           envkey_TEST: ${{ secrets.TEST_SECRET }}
           envkey_TEST_VAR: ${{ vars.TEST_VAR }}
