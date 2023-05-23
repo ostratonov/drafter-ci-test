@@ -7,13 +7,14 @@ permissions:
   contents: read
 env:
   NODE_ENV: ${{ github.ref_name == 'master' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}
-  DOTENV_NAME: ".env.$NODE_ENV"
+  DOTENV_NAME: ".env.${{ github.ref_name == 'master' && 'live' || github.ref_name == 'develop' && 'dev' || github.ref_name == 'sandbox' && 'sandbox' }}"
 
 
 jobs:
   deploy:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-    environment: $NODE_ENV
+    environment:
+      name: $NODE_ENV
     permissions:
       contents: write
       pull-requests: write
