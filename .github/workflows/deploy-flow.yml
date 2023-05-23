@@ -33,7 +33,7 @@ jobs:
         id: caching-dependencies
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-${{ env.NODE_ENV }}-node-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         if: steps.caching-dependencies.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
