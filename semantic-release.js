@@ -81,6 +81,11 @@
                         section: 'Database structure',
                         hidden: false,
                     },
+                    {
+                        type: 'test',
+                        section: 'Tests',
+                        hidden: false,
+                    }
                 ],
             },
         }],
