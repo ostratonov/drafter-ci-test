@@ -43,13 +43,13 @@
             },
         ],
         ['@semantic-release/release-notes-generator', {
-            // preset: 'angular',
+            preset: 'conventionalcommits',
             parserOpts: {
                 noteKeywords: [
                     'BREAKING',
                 ],
             },
-            writerOpts: {
+            presetConfig: {
                 types: [
                     {
                         type: 'refactor',
