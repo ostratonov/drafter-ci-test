@@ -113,6 +113,8 @@
 
         const {nextRelease} = result
 
+        console.log('next release notes from sync jira', nextRelease.notes)
+
         await syncJira(nextRelease.notes, nextRelease.version, {reviewOnly: false})
     } catch (err) {
         console.error('The automated release failed. Error: ', err.message)
