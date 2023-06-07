@@ -52,6 +52,26 @@
             presetConfig: {
                 types: [
                     {
+                        type: 'feat',
+                        section: 'Features',
+                    },
+                    {
+                        type: 'fix',
+                        section: 'Bug Fixes',
+                    },
+                    {
+                        type: 'perf',
+                        section: 'Performance Improvements',
+                    },
+                    {
+                        type: 'docs',
+                        section: 'Documentation',
+                    },
+                    {
+                        type: 'ci',
+                        section: 'Continuous Integration',
+                    },
+                    {
                         type: 'refactor',
                         section: 'Refactoring',
                         hidden: false,
