@@ -43,51 +43,51 @@
             },
         ],
         ['@semantic-release/release-notes-generator', {
-            preset: 'conventionalcommits',
+            preset: 'angular',
             parserOpts: {
                 noteKeywords: [
                     'BREAKING',
                 ],
             },
-            presetConfig: {
-                types: [
-                    {
-                        type: 'feat',
-                        section: 'Features',
-                    },
-                    {
-                        type: 'fix',
-                        section: 'Bug Fixes',
-                    },
-                    {
-                        type: 'perf',
-                        section: 'Performance Improvements',
-                    },
-                    {
-                        type: 'docs',
-                        section: 'Documentation',
-                    },
-                    {
-                        type: 'ci',
-                        section: 'Continuous Integration',
-                    },
-                    {
-                        type: 'refactor',
-                        section: 'Refactoring',
-                        hidden: false,
-                    },
-                    {
-                        type: 'schema',
-                        section: 'Database structure',
-                        hidden: false,
-                    },
-                    {
-                        type: 'test',
-                        section: 'Tests',
-                        hidden: false,
-                    }
-                ],
-            },
+            // presetConfig: {
+            //     types: [
+            //         {
+            //             type: 'feat',
+            //             section: 'Features',
+            //         },
+            //         {
+            //             type: 'fix',
+            //             section: 'Bug Fixes',
+            //         },
+            //         {
+            //             type: 'perf',
+            //             section: 'Performance Improvements',
+            //         },
+            //         {
+            //             type: 'docs',
+            //             section: 'Documentation',
+            //         },
+            //         {
+            //             type: 'ci',
+            //             section: 'Continuous Integration',
+            //         },
+            //         {
+            //             type: 'refactor',
+            //             section: 'Refactoring',
+            //             hidden: false,
+            //         },
+            //         {
+            //             type: 'schema',
+            //             section: 'Database structure',
+            //             hidden: false,
+            //         },
+            //         {
+            //             type: 'test',
+            //             section: 'Tests',
+            //             hidden: false,
+            //         }
+            //     ],
+            // },
         }],
     ]
 
