@@ -49,7 +49,7 @@
                     'BREAKING',
                 ],
             },
-            presetConfig: {
+            writerOpts: {
                 types: [
                     {
                         type: 'refactor',
