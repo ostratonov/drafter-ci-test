@@ -135,6 +135,8 @@
         console.log('result', result)
         if (!result) {
             console.log('No release published.')
+
+            return
         }
 
         const {nextRelease} = result
