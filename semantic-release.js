@@ -43,7 +43,7 @@
             },
         ],
         ['@semantic-release/release-notes-generator', {
-            preset: 'angular',
+            // preset: 'angular',
             parserOpts: {
                 noteKeywords: [
                     'BREAKING',
