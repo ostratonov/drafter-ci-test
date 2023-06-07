@@ -1,3 +1,3 @@
 (function iife() {
-    console.log('Patch applied v15 lubov')
+    console.log('Patch applied v16 lubov')
 })()
