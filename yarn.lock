@@ -44,6 +44,18 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@carrydmcc/bl-semantic-release@^0.0.4":
+  version "0.0.4"
+  resolved "https://npm.pkg.github.com/download/@carrydmcc/bl-semantic-release/0.0.4/d96bbd1946643e363dcfa65bc4e9adebdb2cd9b7#d96bbd1946643e363dcfa65bc4e9adebdb2cd9b7"
+  integrity sha512-8x7YlenlbGdVu7xD1F7fkMFFHY3wse2PtJt+TotC0jSP1fgev8T9n4vj9W2WK3nUlD1rbegwKxQ1e+WgnLlkNg==
+  dependencies:
+    "@achingbrain/semantic-release-github" "https://registry.npmjs.org/@achingbrain/semantic-release-github/-/semantic-release-github-0.0.0.tgz"
+    "@semantic-release/changelog" "^6.0.3"
+    "@semantic-release/commit-analyzer" "^10.0.1"
+    "@semantic-release/exec" "^6.0.3"
+    "@semantic-release/git" "^10.0.1"
+    semantic-release "19.0.5"
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
