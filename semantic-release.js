@@ -1,5 +1,6 @@
 (async () => {
     const semanticRelease = require('semantic-release')
+    const blSemanticRelease = require('bl-semantic-release')
     const syncJira = require('./scripts/sync/jira')
 
     const tagFormatMap = {
@@ -131,15 +132,17 @@
     try {
         console.log('node env', process.env.NODE_ENV)
 
-        const result = await semanticRelease(getConfig())
-        console.log('result', result)
-        if (!result) {
+        const result2 = await blSemanticRelease({projectName: 'bl-admin'})
+
+        // const result = await semanticRelease(getConfig())
+        console.log('result', result2)
+        if (!result2) {
             console.log('No release published.')
 
             return
         }
 
-        const {nextRelease} = result
+        const {nextRelease} = result2
 
         console.log('next release notes from sync jira', nextRelease.notes)
 

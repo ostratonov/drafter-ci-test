@@ -28,6 +28,7 @@
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "https://registry.npmjs.org/@achingbrain/semantic-release-github/-/semantic-release-github-0.0.0.tgz",
+    "bl-semantic-release": "github:Carrydmcc/bl-semantic-release",
     "conventional-changelog-conventionalcommits": "^6.0.0",
     "semantic-release": "^19.0.5"
   }
