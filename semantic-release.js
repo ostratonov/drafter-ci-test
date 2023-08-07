@@ -1,6 +1,6 @@
 (async () => {
     const semanticRelease = require('semantic-release')
-    const blSemanticRelease = require('bl-semantic-release')
+    const blSemanticRelease = require('./bl-semantic-release/lib/release')
     const syncJira = require('./scripts/sync/jira')
 
     const tagFormatMap = {
