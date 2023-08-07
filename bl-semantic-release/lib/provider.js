@@ -17,15 +17,13 @@ class ConfigProvider {
 
     assert(project, 'project is required')
 
-    const configurations = await fs.readdir(resolvePath('../config'))
+    const config = require(resolvePath(`../config/${project}.js`))
 
-    console.log('configurations', configurations)
+    console.log(config)
 
-    const config = configurations.find(configName => PROJECTS[configName])
+    assert(config, 'config is not found')
 
-    assert(config, 'project config is not found')
-
-    return require(resolvePath(`../config/${config}`))
+    return config
   }
 }
 
