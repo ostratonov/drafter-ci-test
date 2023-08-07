@@ -19,7 +19,11 @@ class ConfigProvider {
 
     const configurations = await fs.readdir(resolvePath('../config'))
 
+    console.log('configurations', configurations)
+
     const config = configurations.find(configName => PROJECTS[configName])
+
+    assert(config, 'project config is not found')
 
     return require(resolvePath(`../config/${config}`))
   }
