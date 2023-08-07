@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
       - name: NPM Login
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
       - name: Cache dependencies
         uses: actions/cache@v3
         id: caching-dependencies
