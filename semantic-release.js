@@ -133,7 +133,7 @@
         console.log('node env', process.env.NODE_ENV)
 
         const result2 = await blSemanticRelease({
-            projectName: 'bl-admin'
+            project: 'bl-admin'
         })
 
         // const result = await semanticRelease(getConfig())
