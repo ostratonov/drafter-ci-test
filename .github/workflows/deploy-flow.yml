@@ -22,7 +22,7 @@ jobs:
       db-deployment: ${{ steps.db-deployment.outputs.success }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
